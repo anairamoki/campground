@@ -1,0 +1,12 @@
+JOI is a JS validator tool.
+Basically, you define a schema for some thing, some data in JavaScript.
+So for our schema will basically be for the request body (req.body) and  can be validated, and make sure that campground is there as an object or title is a string and it's an alphanumeric string.
+
+npm i joi
+
+campgroundSchema -> validate basic schema to validate data before to save it with Mongoose. THIS IS NOT A Mongoose SCHEMA!
+
+
+Once the schema is defined, pass the data through to the schema.
+ const result = campgroundSchema.validate(req.body); -> campground.Schema validates req.body and save the results.
+

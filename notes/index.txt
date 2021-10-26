@@ -1,0 +1,18 @@
+31st - Adding Route to campgrounds folder in the app.js file
+
+32nd - create a folder <campgrounds> inside of views folder. 
+33rd - create a file <index.ejs> inside of campgrounds folder
+
+34th - make a template and a for loop in index.ejs
+
+<% for(let c of campgrounds ) {%> 
+      <li>
+        <%=c.title%> 
+      </li>
+    <% } %>
+  </ul> 
+
+  - let c of a variable campgrounds (created on the 31st step in the app.js) <const campgrounds = await Campground.find({});> get the title of Campground db
+
+  35th - passing trough the campgrounds variable
+

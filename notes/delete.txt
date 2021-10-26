@@ -1,0 +1,10 @@
+52nd - DELETE route - app.js
+53rd - creating a delete form and DELTE query string in show.ejs 
+
+
+(node:32871) UnhandledPromiseRejectionWarning: CastError: Cast to ObjectId failed for value " 613b9d2066a4c76f726e2a13" (type string) at path "_id" for model "Campground"
+    at model.Query.exec (/Users/arianemoki/workspace/udemy/yelpCamp/node_modules/mongoose/lib/query.js:4540:21)
+    at model.Query.Query.then (/Users/arianemoki/workspace/udemy/yelpCamp/node_modules/mongoose/lib/query.js:4639:15)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+(node:32871) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). To terminate the node process on unhandled promise rejection, use the CLI flag `--unhandled-rejections=strict` (see https://nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)
+(node:32871) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.

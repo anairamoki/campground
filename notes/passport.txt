@@ -1,0 +1,44 @@
+** passport-local-mongoose ** 
+• in the user.js file (models/user.js)
+UserSchema.plugin(passportLocalMongoose)
+
+Pass in the result of requiring the package (passport-local-mongoose) to use the schema plug in, and this is going to add on in the schema a user name.
+Also, it's going to add on a field for password. And make sure those user names are unique.
+They're not duplicated.
+
+•In app.js 
+In a Connect or Express-based application, passport.initialize() middleware is required to initialize Passport. If your application uses persistent login sessions, passport.session() middleware must also be used.
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+passport.use(new LocalStrategy(User.authenticate()))
+
+OK, so what we're saying here is that, hallo, passports, we would like you to use the local strategy that we have downloaded and required and for that local strategy, the authentication method is going to be located on our user model, and it's called authenticate.
+
+passport.serializeUser(User.serializeUser())
+
+This line is telling passport to serialize a user and serialisation refers to basically how do we get data, how do we store a user in the session.
+
+passport.deserializeUser(User.deserializeUser())
+
+How do you get a User out of that session.
+
+•in user.js (routes/user.js)
+router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
+
+})
+- Meaning - 
+•local - my computer
+•failureFlash: true - if the user's data is wrong flash an error message
+•failureRedirect: '/login' - if the user's data is wrong, redirect the user to login page
+
+
+•in users.js (/routes/users.js)
+Passport exposes a login() function on req (also aliased as logIn()) that can be used to establish a login session.
+
+Note: passport.authenticate() middleware invokes req.login() automatically. This function is primarily used when users sign up, during which req.login() can be invoked to automatically log in the newly registered user.
+
+req.login(registeredUser, err => {
+        if (err) return next(err);

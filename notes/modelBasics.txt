@@ -1,0 +1,44 @@
+** Setting up Mongoose **
+
+15th - create a folder <models> and a file <campground.js>
+16th - Requires Mongoose
+17th - create a variable for Schema
+18 - create the Schema. It doesn't need to write ..new mongoose.Schema.. because a variable was created above, instead use .. new Schema -name of variable- ({....})
+19th - export the model which the name is Campground and the Schema's name (CampgroundSchema). created on the step 18.
+
+20th - Connect Mongoose in the app.js file and passing options
+mongoose.connect('mongodb://localhost:27017/yelp-camp') - yelp-camp -> DB name
+
+options: useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+
+21st - DB logic.
+db variable was set to mongoose.connection <const db = mongoose.connection;>
+
+Note: MongoParseError: option usecreateindex is not supported.
+When the usecreateindex is removed the DB works. 
+This is why: 
+The mongoose package just recently updated to version 6.x after years, and the useCreateIndex property is no longer required to dismiss some warnings. If you're both using the updated version, you can remove that line without any issues. 
+
+an alternative: 
+mongoose.connect('mongodb://localhost:27017/yelpCampDb', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("MONGO CONNECTION OPEN!!!")
+    })
+    .catch(err => {
+        console.log("Error, MONGO CONNECTION!!!!")
+        console.log(err)
+    })
+22nd - creating a new Campground - populating the db 
+23rd - requiring models that is in the campground.js file in the folder models. 
+
+
+24th - on Google Chrome type: localhost:3000/makecampground and see if shows {title: 'My Backyard', description: 'Cheap Camping!' }, if does, you've populated the db.
+
+On terminal open mongo. 
+1st type: mongo
+2nd type: use yelp-camp
+3rd type: db.campgrounds.find()
+{ "_id" : ObjectId("613b8699c67eb533a4ae8f20"), "title" : "My Backyard", "description" : "Cheap Camping", "__v" : 0 }
+

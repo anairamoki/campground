@@ -1,0 +1,11 @@
+if (!['/login', '/register', '/'].includes(req.originalUrl)) {
+    console.log(req.originalUrl);//originalUrl - where the request comes from
+    req.session.returnTo = req.originalUrl;
+
+** logic explained **
+if the user is not comming from login, register and home page, includes the original URL(req.originalUrl).
+if you are in login, register and home page and send a POST request, is going to check where are you comming from. If comming from login, register and home,  the user will be redirect to campground page
+if (!['/login', '/register', '/'].includes(req.originalUrl)) {
+  console.log(req.originalUrl);
+if the user is comming from anywhere else, return to original URL
+req.session.returnTo = req.originalUrl;

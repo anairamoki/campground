@@ -24,3 +24,12 @@ This line is telling passport to serialize a user and serialisation refers to ba
 passport.deserializeUser(User.deserializeUser())
 
 How do you get a User out of that session.
+
+•in user.js (routes/user.js)
+router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
+
+})
+ - Meaning - 
+ •local - my computer
+ •failureFlash: true - if the user's data is wrong flash an error message
+ •failureRedirect: '/login' - if the user's data is wrong, redirect the user to login page

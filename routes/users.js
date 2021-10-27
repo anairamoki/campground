@@ -35,9 +35,10 @@ router.get('/login', (req, res) => {
 
 //login route to submit the form to
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
-  req.flash('success', 'Welcome Back!');
-  res.redirect('/campgrounds')
-
+  req.flash('success', 'welcome back!');
+  const redirectUrl = req.session.returnTo || '/campgrounds';
+  delete req.session.returnTo;
+  res.redirect(redirectUrl);
 })
 
 // Logout route

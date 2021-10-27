@@ -1,0 +1,7 @@
+** passport-local-mongoose ** 
+• in the user.js file (models/user.js)
+UserSchema.plugin(passportLocalMongoose)
+
+Pass in the result of requiring the package (passport-local-mongoose) to use the schema plug in, and this is going to add on in the schema a user name.
+Also, it's going to add on a field for password. And make sure those user names are unique.
+They're not duplicated.

@@ -65,6 +65,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate())) //pass user model
 
+
+// how the data is stored and retrieved in the session
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 

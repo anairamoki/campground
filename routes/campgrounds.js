@@ -44,7 +44,7 @@ router.post('/', isLoggedIn, validateCampground, catchAsync(async (req, res, nex
 
 // 36th - Adding Route to campgrounds folder <show.ejs> 
 router.get('/:id', catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id) //39th
+    const campground = await Campground.findById(req.params.id).populate('reviews') //39th
     if (!campground) {//if campground is not found by Id show error message
       req.flash('error', 'Cannot find that campground!');
       return res.redirect('/campgrounds');
@@ -82,7 +82,7 @@ module.exports = router;
 
 
 
- 
+
 
 
 

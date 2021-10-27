@@ -5,3 +5,22 @@ UserSchema.plugin(passportLocalMongoose)
 Pass in the result of requiring the package (passport-local-mongoose) to use the schema plug in, and this is going to add on in the schema a user name.
 Also, it's going to add on a field for password. And make sure those user names are unique.
 They're not duplicated.
+
+•In app.js 
+In a Connect or Express-based application, passport.initialize() middleware is required to initialize Passport. If your application uses persistent login sessions, passport.session() middleware must also be used.
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+passport.use(new LocalStrategy(User.authenticate()))
+
+OK, so what we're saying here is that, hallo, passports, we would like you to use the local strategy that we have downloaded and required and for that local strategy, the authentication method is going to be located on our user model, and it's called authenticate.
+
+passport.serializeUser(User.serializeUser())
+
+This line is telling passport to serialize a user and serialisation refers to basically how do we get data, how do we store a user in the session.
+
+passport.deserializeUser(User.deserializeUser())
+
+How do you get a User out of that session.

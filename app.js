@@ -8,7 +8,9 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const ExpressError = require('./utils/ExpressError') //requiring to use ExpressError class
 const methodOverride = require('method-override'); // 47th
-
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');// requireing user model
 
 const campgrounds = require('./routes/campgrounds');
 const reviews = require('./routes/reviews');
@@ -53,8 +55,16 @@ const sessionConfig = {
 }
 
 
-app.use(session(sessionConfig));
-app.use(flash()); 
+app.use(session(sessionConfig)); //has to come before app.use(passport.session());
+app.use(flash());
+
+// Middleware to use passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate())) //pass user model
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const catchAsync = require('../utils/catchAsync');//requiring to use catchAsync class
 const { campgroundSchema } = require('../schemas');
-const { isLoggedIn }  = require('../middleware/middleware');
+const { isLoggedIn }  = require('../middleware');
 
 
 const ExpressError = require('../utils/ExpressError') //requiring to use ExpressError class

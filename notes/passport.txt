@@ -29,7 +29,16 @@ How do you get a User out of that session.
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
 
 })
- - Meaning - 
- •local - my computer
- •failureFlash: true - if the user's data is wrong flash an error message
- •failureRedirect: '/login' - if the user's data is wrong, redirect the user to login page
+- Meaning - 
+•local - my computer
+•failureFlash: true - if the user's data is wrong flash an error message
+•failureRedirect: '/login' - if the user's data is wrong, redirect the user to login page
+
+
+•in users.js (/routes/users.js)
+Passport exposes a login() function on req (also aliased as logIn()) that can be used to establish a login session.
+
+Note: passport.authenticate() middleware invokes req.login() automatically. This function is primarily used when users sign up, during which req.login() can be invoked to automatically log in the newly registered user.
+
+req.login(registeredUser, err => {
+        if (err) return next(err);

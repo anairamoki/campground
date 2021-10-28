@@ -5,22 +5,20 @@ const { isLoggedIn, isAuthor, validateCampground }  = require('../middleware');
 
 
 
-const Campground = require('../models/campground'); //23rd - requiring models
+const Campground = require('../models/campground'); 
 
 
-//31st - Adding Route to campgrounds folder <index.ejs> 
 router.get('/', catchAsync(async (req, res) => {
   const campgrounds = await Campground.find({});
-  res.render('campgrounds/index', {campgrounds}) // 35th step
+  res.render('campgrounds/index', {campgrounds})
 }));
 
 
-// 40th - Adding Route to campgrounds folder <new.ejs> 
 router.get('/new', isLoggedIn, (req, res) => {
   res.render('campgrounds/new');
 }); 
 
-// 42nd - ending point 
+
 // *catchAsync handles the errors
 router.post('/', isLoggedIn, validateCampground, catchAsync(async (req, res, next) => {
   // if (!req.body.campground) throw new ExpressError('Invalid Campground Data', 400);
@@ -31,7 +29,7 @@ router.post('/', isLoggedIn, validateCampground, catchAsync(async (req, res, nex
   res.redirect(`/campgrounds/${campground._id}`) //*saving user's inputs
 }));
 
-// 36th - Adding Route to campgrounds folder <show.ejs> 
+//<show.ejs> 
 router.get('/:id', catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id).populate({//39th
       path: 'reviews', 
@@ -47,7 +45,7 @@ router.get('/:id', catchAsync(async (req, res) => {
     res.render('campgrounds/show', { campground }); //37th
 }));
 
-//44th - Adding Route to campgrounds folder <edit.ejs> 
+//<edit.ejs> 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
   const {id} = req.params;
   const campground = await Campground.findById(id)
@@ -58,7 +56,7 @@ router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
   res.render('campgrounds/edit', { campground });
 }));
 
-// 49th 
+// update 
 router.put('/:id', isLoggedIn, isAuthor, validateCampground, catchAsync(async (req, res) => {
   const { id } = req.params;
   const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground }); //51st
@@ -66,7 +64,7 @@ router.put('/:id', isLoggedIn, isAuthor, validateCampground, catchAsync(async (r
   res.redirect(`/campgrounds/${campground._id}`)
 })); 
 
-//52nd - DELETE route
+//DELETE route
 router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
   const { id } = req.params;
   await Campground.findByIdAndDelete(id);

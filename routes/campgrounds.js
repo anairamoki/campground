@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const catchAsync = require('../utils/catchAsync');//requiring to use catchAsync class
 const { isLoggedIn, isAuthor, validateCampground }  = require('../middleware');
+
+
+
 const Campground = require('../models/campground'); //23rd - requiring models
 
 
@@ -30,7 +33,12 @@ router.post('/', isLoggedIn, validateCampground, catchAsync(async (req, res, nex
 
 // 36th - Adding Route to campgrounds folder <show.ejs> 
 router.get('/:id', catchAsync(async (req, res) => {
-    const campground = await Campground.findById(req.params.id).populate('reviews').populate('author'); //39th
+    const campground = await Campground.findById(req.params.id).populate({//39th
+      path: 'reviews', 
+      populate: {
+        path: 'author'
+      }
+    }).populate('author'); 
     console.log(campground);
     if (!campground) {//if campground is not found by Id show error message
       req.flash('error', 'Cannot find that campground!');

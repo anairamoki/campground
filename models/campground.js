@@ -5,18 +5,21 @@ const Schema = mongoose.Schema;
 //Creating Schema 
 const CampgroundSchema = new Schema({
   title: String,
-  image: String, 
+  image: String,
   price: Number,
   description: String,
   location: String,
-  reviews: [
-    {
+  author: {
       type: Schema.Types.ObjectId,
-      ref: 'Review'
-
-    }
+      ref: 'User'
+  },
+  reviews: [
+      {
+          type: Schema.Types.ObjectId,
+          ref: 'Review'
+      }
   ]
-}); 
+});
 
 // to delete all the review in the DB when the specific campground is deleted by the client
 CampgroundSchema.post('findOneAndDelete', async function (doc) {

@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');// 16th step
-const Review = require('./reviews')// 17th step is a shortcut for referencing Schema
+const mongoose = require('mongoose');
+const Review = require('./reviews')
 const Schema = mongoose.Schema;
 
-//Creating Schema 18th step.
+//Creating Schema 
 const CampgroundSchema = new Schema({
   title: String,
-  image: String, //62nd
+  image: String, 
   price: Number,
   description: String,
   location: String,

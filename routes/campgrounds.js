@@ -9,7 +9,7 @@ const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 
   
-// grouping the routes with commum paths - campground routes
+// grouping the routes with commom paths - campground routes
 
 router.route('/')
   .get(catchAsync(campgrounds.index))//index page

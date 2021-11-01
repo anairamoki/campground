@@ -30,3 +30,4 @@ Is a server where we can store the images
 It gives an API Key and API secret. To store the API's credentials or secret keys inside of our application we use a hidden file. So when we send out our project to GitHub, this hidden file won't be sent. 
 This hidden file stays locally in our machine and it's called dotenv.
 
+ALWAYS INCLUDE .ENV ON .GITIGNORE

@@ -4,8 +4,8 @@ const campgrounds = require('../controllers/campgrounds');
 const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, isAuthor, validateCampground }  = require('../middleware');
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' });
-const Campground = require('../models/campground'); 
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
 
   
 // grouping the routes with commum paths - campground routes
@@ -19,7 +19,8 @@ router.route('/')
   .post(upload.array('image'),(req, res) => {
     console.log(req.body, req.files);
     res.send("It worked!")
-  })
+  }) 
+
 
 //new campgrounds routes 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm); 

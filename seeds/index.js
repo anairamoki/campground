@@ -17,10 +17,7 @@ db.once("open", () => {
   console.log("Database connected!");
 }); 
 
-
-
 const sample = array => array[Math.floor(Math.random() * array.length)];
-
 
 const seedDB = async () => {
   await Campground.deleteMany({}); // removing data from db
@@ -37,9 +34,9 @@ const seedDB = async () => {
       price
     })
     await camp.save();
-  }
-    
+  } 
 }; 
+
 //closing the db
 seedDB().then(() => {
   mongoose.connection.close()

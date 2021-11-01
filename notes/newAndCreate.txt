@@ -12,27 +12,10 @@ in the APP.JS
 When creating NEW ROUTE it needs to come first the show route. Because there's an app to get campground ID <app.get('/campgrounds/:id'...>. 
 If the NEW ROUTE is after SHOW ROUTE, the ('campgrounds/new') be treating the new as the ID. 
 
-**THE CORRECT ORDER**
-
-// 40th - Adding Route to campgrounds folder <new.ejs> 
-app.get('/campgrounds/new', (req, res) => {
-  res.render('campgrounds/new')
-}); 
 
 
-// 36th - Adding Route to campgrounds folder <show.ejs> 
-app.get('/campgrounds/:id', async (req, res) =>
-{
-  const campground = await Campground.findById(req.params.id) //39th
-  res.render('campgrounds/show', { campground }); //37th
-});
---------------------------------------------------------------------------
+- ending point - where the POST REQUEST is submitted (button)- app.js
 
-42nd - ending point - where the POST REQUEST is submitted (button)- app.js
-43rd - Parse the body - GOOGLE CHROME OUTPUT -
-{"campground":{"title":"Spring","location":"Nevasca"}}
-
-THIS <{"campground":> is due to the name="campground[title]" in the input tag in new.ejs
 
 
 

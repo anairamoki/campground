@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const campgrounds = require('../controllers/campgrounds');
 const catchAsync = require('../utils/catchAsync');
@@ -34,3 +35,12 @@ router.route('/:id')
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm));
 
 module.exports = router; 
+
+
+
+
+
+
+
+
+

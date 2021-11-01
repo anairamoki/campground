@@ -1,3 +1,10 @@
+
+require('dotenv').config();
+
+
+console.log(process.env.SECRET)
+console.log(process.env.API_KEY)
+
 const express = require('express'); 
 const path = require('path');
 const mongoose = require('mongoose'); 
@@ -19,7 +26,10 @@ const reviewRoutes = require('./routes/reviews');
 
 
 //Connect Mongoose
-mongoose.connect('mongodb://localhost:27017/yelpcamp'), {
+
+mongoose.connect('mongodb://localhost:27017/yelpcampDemo'), {
+=======
+
   useNewUrlParser: true,
   //useCreateIndex: true,
   useUnifiedTopology: true,
@@ -41,7 +51,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')) 
 //*? letting express know how to locate the views/templates
 //*? path is the global object and __dirname holds current directory address and, 'views' is the folder where all the web pages will be kept.
-
 
 app.use(express.urlencoded({ extended: true }));//tell express to parse the body
 app.use(methodOverride('_method'));//method-override
@@ -111,10 +120,3 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
   console.log('Serving on Port 3000')
 })
-
-
-
-
-
-
-

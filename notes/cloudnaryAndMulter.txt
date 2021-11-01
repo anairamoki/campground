@@ -1,0 +1,32 @@
+** Multer **
+Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
+
+In order to parse data - files - (enctype="multipart/form-data") we need to use a middleware called MULTER. (express/multer)
+
+on new.ejs file do the following: 
+1 - add  enctype="multipart/form-data" in the form 
+<form action="/campgrounds" method="POST" novalidate enctype="multipart/form-data" class="validated-form">
+
+enctype="multipart/form-data" - is an encoding type that allows files to be sent through a POST. 
+
+2 - create a newinput tag whithin a form. 
+<input type="file" name="image" id="" multiple> 
+multiple =  allows to upload multiple images. 
+leave it blank if it is a single image upload.  
+<input type="file" name="image" id=""> 
+
+on campgrounds.js file routes/campgrounds
+.post(upload.array('image'),(req, res) => {
+    console.log(req.body, req.files);
+    res.send("It worked!")
+  })
+
+upload.array('image') - upload multiple images at once
+upload.single('image') - upload single image at once. 
+
+** cloudnary **
+Is a server where we can store the images
+
+It gives an API Key and API secret. To store the API's credentials or secret keys inside of our application we use a hidden file. So when we send out our project to GitHub, this hidden file won't be sent. 
+This hidden file stays locally in our machine and it's called dotenv.
+

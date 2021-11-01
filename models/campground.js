@@ -19,6 +19,7 @@ const CampgroundSchema = new Schema({
           ref: 'Review'
       }
   ]
+
 });
 
 // to delete all the review in the DB when the specific campground is deleted by the client
@@ -33,3 +34,4 @@ CampgroundSchema.post('findOneAndDelete', async function (doc) {
 })
 
 module.exports = mongoose.model('Campground', CampgroundSchema);
+

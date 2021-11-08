@@ -12,8 +12,8 @@ const Campground = require('../models/campground');
 router.route('/')
   .get(catchAsync(campgrounds.index))//index page
   //*catchAsync - handles the errors
-  .post(isLoggedIn, upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground));
-  
+  .post(isLoggedIn,upload.array('image'),validateCampground,catchAsync(campgrounds.createCampground));
+
 //new campgrounds routes 
 router.get('/new', isLoggedIn, campgrounds.renderNewForm); 
 

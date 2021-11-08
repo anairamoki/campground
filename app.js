@@ -1,6 +1,4 @@
-
 require('dotenv').config();
-
 
 console.log(process.env.SECRET)
 console.log(process.env.API_KEY)
@@ -13,7 +11,7 @@ const ejsMate = require('ejs-mate');
 const { campgroundSchema, reviewSchema } = require('./schemas.js');
 const session = require('express-session');
 const flash = require('connect-flash');
-const ExpressError = require('./utils/ExpressError') 
+const ExpressError = require('./utils/expressError') 
 const methodOverride = require('method-override'); 
 const passport = require('passport');
 const LocalStrategy = require('passport-local');

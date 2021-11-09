@@ -1,0 +1,18 @@
+**map.on(load)**
+Is an event, loads the map
+map.on('load'....
+________________________________________________________________________________
+________________________________________________________________________________
+**Mouseenter** 
+Is an event when the mouse enter (hoover) on cluters, the mouse cursor changes to pointer
+
+map.on('mouseenter', 'clusters', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+________________________________________________________________________________
+**Mouseleave**
+Is an event when the mouse leave (hoover off) the cluters, the mouse cursor changes to 'grab' cursor 
+
+map.on('mouseleave', 'clusters', () => {
+            map.getCanvas().style.cursor = '';
+        });

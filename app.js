@@ -78,7 +78,7 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
-  //req.user - authomatically access the current user. Saved in currentUser variable.
+  //req.user - authomatically access the current user. Saved in currentUser constiable.
   if (!['/login', '/register', '/'].includes(req.originalUrl)) {
     console.log(req.originalUrl);//originalUrl - where the request comes from
     req.session.returnTo = req.originalUrl;

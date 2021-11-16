@@ -8,7 +8,7 @@ options: useNewUrlParser: true,
     useUnifiedTopology: true,
 
 21st - DB logic.
-db variable was set to mongoose.connection <const db = mongoose.connection;>
+db constiable was set to mongoose.connection <const db = mongoose.connection;>
 
 Note: MongoParseError: option usecreateindex is not supported.
 When the usecreateindex is removed the DB works. 

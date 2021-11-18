@@ -34,5 +34,9 @@
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0"
+  },
+  "devDependencies": {
+    "express-mongo-sanitize": "^2.1.0",
+    "sanitize-html": "^2.5.3"
   }
 }

@@ -17,6 +17,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
+const mongoSanitize = require('express-mongo-sanitize');
+
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
@@ -50,6 +52,11 @@ app.use(express.urlencoded({ extended: true }));//tell express to parse the body
 app.use(methodOverride('_method'));//method-override
 app.use(express.static(path.join(__dirname, 'public')))//ensure that it always gets the correct path to the public folder.
 
+// To remove data, use:
+app.use(mongoSanitize({
+  replaceWith: '_'
+}));
+
 
 const sessionConfig = {
   secret: 'thisshouldbeabettersecret!',
@@ -78,11 +85,6 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
-  //req.user - authomatically access the current user. Saved in currentUser constiable.
-  if (!['/login', '/register', '/'].includes(req.originalUrl)) {
-    console.log(req.originalUrl);//originalUrl - where the request comes from
-    req.session.returnTo = req.originalUrl;
-  }
   res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');

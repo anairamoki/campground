@@ -3,10 +3,12 @@
   <div class="col-6 offset-3">
     <div class="alert alert-danger" role="alert">
       <h4 class="alert-heading"><%=err.message%></h4>
-      <!-- overflow-wrap: break-word;= styles to break the word-->
+      <% if (process.env.NODE_ENV !== "production") { %>
       <div style="overflow-wrap: break-word;">
-        <%= err.stack %> <!--show strack trace-->
+        <p><%= err.stack %></p><!--show strack trace-->
+      <% } %> 
       </div>
     </div>
   </div>
-</div>
+</div> 
+
